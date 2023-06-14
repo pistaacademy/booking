@@ -1,54 +1,27 @@
 import { useState } from "react";
+import axios from "axios";
+
+import RegisterForm from "../components/RegisterForm";
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({ name, email, password });
+        try {
+            const res = await axios.post(`http://localhost:8000/api/register`, {
+            name,
+            email,
+            password,
+        });
+        console.log(res);
+        } catch (err) {
+            console.log(err)
+        }
     }
 
-    const registerForm = () => {
-        return (
-            <form onSubmit={handleSubmit} className="mt-3">
-                <div className="form-group mb-3">
-                    <label className="form-label">Your Name</label>
-                    <input 
-                        type="text" 
-                        className="form-control"
-                        placeholder="Enter Your Name ..." 
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div className="form-group mb-3">
-                    <label className="form-label">Your Email</label>
-                    <input 
-                        type="email" 
-                        className="form-control"
-                        placeholder="Enter Your Email ..." 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-
-                <div className="form-group mb-3">
-                    <label className="form-label">Your Password</label>
-                    <input 
-                        type="password" 
-                        className="form-control"
-                        placeholder="Enter Your Password ..." 
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-        )
-    }
     return (
         <>
             <div className="container-fluid bg-secondary p-5 text-center">
@@ -57,7 +30,15 @@ const Register = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
-                        {registerForm()}
+                        <RegisterForm 
+                            handleSubmit={handleSubmit}
+                            name={name}
+                            setName={setName}
+                            email={email}
+                            setEmail={setEmail}
+                            password={password}
+                            setPassword={setPassword}
+                        />
                     </div>
                 </div>
             </div>
