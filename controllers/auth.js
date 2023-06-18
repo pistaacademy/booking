@@ -15,7 +15,7 @@ export const register = async (req, res) => {
         console.log("User Created", user);
         return res.json({ ok: true });
     }
-    catch{
+    catch (err) {
         console.log("Create User Failed", err);
         return res.status(400).send("Error. Try again.")
     }
