@@ -11,6 +11,17 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try{
+            let res = await login({ email, password });
+            console.log("Send Login Data", {email, password})
+            if(res.data) {
+                console.log(res.data);
+            }
+        }
+        catch (err){
+            console.log(err)
+            if(err.response.status === 400) toast.error(err.response.data)
+        }
     }
 
     return (
