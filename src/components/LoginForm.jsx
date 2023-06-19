@@ -1,16 +1,6 @@
-const RegisterForm = ({handleSubmit,name,setName,email,setEmail,password,setPassword}) => {
+const LoginForm = ({handleSubmit,email,setEmail,password,setPassword}) => {
     return (
         <form onSubmit={handleSubmit} className="mt-3">
-                <div className="form-group mb-3">
-                    <label className="form-label">Your Name</label>
-                    <input 
-                        type="text" 
-                        className="form-control"
-                        placeholder="Enter Your Name ..." 
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
                 <div className="form-group mb-3">
                     <label className="form-label">Your Email</label>
                     <input 
@@ -33,9 +23,9 @@ const RegisterForm = ({handleSubmit,name,setName,email,setEmail,password,setPass
                     />
                 </div>
 
-                <button disabled={!name || !email || !password} type="submit" className="btn btn-primary">Submit</button>
+                <button disabled={!email || !password} type="submit" className="btn btn-primary">Login</button>
         </form>
     )
 }
 
-export default RegisterForm;
+export default LoginForm;

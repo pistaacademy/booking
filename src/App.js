@@ -1,26 +1,26 @@
-import Home from './booking/Home';
-import Login from './auth/Login';
-import Register from './auth/Register';
-
 import TopNav from './components/TopNav';
 
+import { Routes, Route } from "react-router-dom"
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Home from './booking/Home';
+import Login from './auth/Login';
+import Register from './auth/Register';
+
 
 function App() {
   return (
-    <BrowserRouter>
-    <TopNav />
-    <ToastContainer position="top-center" theme="dark" />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Switch>
-    </BrowserRouter>
+    <div>
+      <TopNav />
+      <ToastContainer position="top-center" theme="dark" />
+      <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+      </Routes>
+    </div>
   );
 }
 
