@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 import RegisterForm from "../components/RegisterForm";
@@ -7,17 +8,20 @@ import { toast } from 'react-toastify';
 import { register } from '../actions/auth';
 
 
-const Register = ({history}) => {
+const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const history = useNavigate();
+
     const handleSubmit = async (e) => {
+        
         e.preventDefault();
         try {
             const res = await register({name,email,password});
             toast.success("Register success.Please Login.");
-            history.push("/login");
+            history("/login");
 
         } catch (err) {
             console.log(err)
