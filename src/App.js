@@ -10,6 +10,7 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import Dashboard from './user/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
+import DashboardSeller from './user/DashboardSeller';
 
 
 function App() {
@@ -21,13 +22,8 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/dashboard" element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }>
-
-          </Route>
+          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
+          <Route path="/dashboard/seller" element={<PrivateRoute><DashboardSeller /></PrivateRoute>}></Route>
       </Routes>
     </div>
   );
