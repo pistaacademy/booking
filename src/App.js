@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from './booking/Home';
 import Login from './auth/Login';
 import Register from './auth/Register';
+import Dashboard from './user/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
@@ -19,6 +21,13 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/dashboard" element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }>
+
+          </Route>
       </Routes>
     </div>
   );
