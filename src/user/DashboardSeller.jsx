@@ -1,10 +1,11 @@
 import DashboardNav from "../components/DashbaordNav";
+import ConnectNav from "../components/ConnectNav";
 
 const DashboardSeller = () => {
     return (
         <>
             <div className="container-fluid bg-secondary p-5">
-                <h1>Dashboard Seller</h1>
+                <ConnectNav />
             </div>
             <div className="container-fluid p-4">
                 <DashboardNav />
