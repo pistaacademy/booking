@@ -11,6 +11,7 @@ import Register from './auth/Register';
 import Dashboard from './user/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import DashboardSeller from './user/DashboardSeller';
+import NewHotel from './hotels/NewHotel';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
           <Route path="/dashboard/seller" element={<PrivateRoute><DashboardSeller /></PrivateRoute>}></Route>
+          <Route path="/hotels/new" element={<PrivateRoute><NewHotel /></PrivateRoute>}></Route>
       </Routes>
     </div>
   );
