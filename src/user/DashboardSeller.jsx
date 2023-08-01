@@ -1,13 +1,30 @@
+import { useState } from "react";
 import DashboardNav from "../components/DashbaordNav";
 import ConnectNav from "../components/ConnectNav";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { HomeOutlined } from "@ant-design/icons";
+import { createConnectAccount } from "../actions/stripe";
+import {toast} from 'react-toastify';
 
 
 const DashboardSeller = () => {
 
     const { auth } = useSelector((state) => ({ ...state }));
+    const [loading, setLoading] = useState(false);
+
+    const handleClick = async () => {
+        setLoading(true)
+        try {
+            let res = await createConnectAccount(auth.token)
+            console.log(res)
+        }
+        catch (err) {
+            console.log(err)
+            toast.error("Stripe connect failed, Try again...")
+            setLoading(false)
+        }
+    }
 
     const connected = () => {
         return (
@@ -37,7 +54,13 @@ const DashboardSeller = () => {
                             <p className="lead">
                                 Booking partners with stripe to transfer eranings to your bank account
                             </p>
-                            <button className="btn btn-primary mb-3">Setup Payouts</button>
+                            <button
+                                disabled={loading} 
+                                onClick={handleClick} 
+                                className="btn btn-primary mb-3"
+                            >
+                                {loading ? "Processing..." : "Setup Payouts"}
+                            </button>
                             <p className="text-muted">
                                 <small>
                                     You'll be redirected to Stripe to complete the onboarding process.
